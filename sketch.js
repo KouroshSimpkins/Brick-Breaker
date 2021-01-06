@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
 
+let score = 0;
+
 let x = 4;
 let y = 4;
 
@@ -12,13 +14,15 @@ let ay = 0;
 function setup() {
   createCanvas(500, 500);
   fill(0);
+  Paddle = new Paddle();
 }
 
 function draw() {
   background(240, 248, 255);
   ballMove();
   ellipse(x, y, 30, 30);
-  rect(mouseX, 400, 100, 12);
+  textSize(32);
+  text(`Score:${score}`, width - 160, 30);
 }
 
 function ballMove() {
