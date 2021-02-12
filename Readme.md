@@ -21,6 +21,6 @@ Read more about breakout [here](https://en.wikipedia.org/wiki/Breakout_(video_ga
 
 I have outlined an (extremely) basic plan below for how I'm going to go about completing this project. As such, I have also shown that I have finished off the initial plan, as I have presented this on the 16<sup>th</sup> of December 2020, and received feedback on my idea.
 
-* [X] ~~*Initial Plan*~~ [2020-12-16]
-* [ ] Basic Concept
+* [X] ~~*Initial Plan*~~
+* [X] ~~*Basic Concept*~~
 * [ ] Finished Product 😄
