@@ -1,53 +1,69 @@
 /*jshint esversion: 6 */
 
-let score = 0;
-
-let x = 4;
-let y = 4;
-
-let vx = 1;
-let vy = 2;
-
-let ax = 0;
-let ay = 0;
+let playerPaddle;
+let aiPaddle;
+let ball;
+let playerScore;
+let aiScore;
 
 function setup() {
-  createCanvas(500, 500);
-  fill(0);
-  Paddle = new Paddle();
+  frameRate(144);
+  createCanvas(624, 351);
+  playerPaddle = new Paddle(26);
+  aiPaddle = new Paddle(width - 48);
+  ball = new Ball();
+  playerScore = new Score(width / 2 - 40);
+  aiScore = new Score(width / 2 + 40);
 }
 
 function draw() {
-  background(240, 248, 255);
-  ballMove();
-  ellipse(x, y, 30, 30);
-  textSize(32);
-  text(`Score:${score}`, width - 160, 30);
+  background(0);
+
+  stroke(255);
+  line(width/2, 0, width/2, height);
+
+  playerPaddle.display();
+  aiPaddle.display();
+
+  playerPaddle.update();
+  aiPaddle.update();
+
+  processAI();
+
+  ball.update(playerScore, aiScore);
+  ball.display();
+
+  ball.hasHitPlayer(playerPaddle);
+  ball.hasHitAi(aiPaddle);
+
+  playerScore.display();
+  aiScore.display();
 }
 
-function ballMove() {
-  ax = accelerationX;
-  ay = accelerationY;
+function processAI() {
+  let middleOfPaddle = aiPaddle.y + aiPaddle.height / 2;
 
-  vx = vx + ay;
-  vy = vy + ax;
-  y = y + vy;
-  x = x + vx;
+  if (middleOfPaddle > ball.y) {
+    aiPaddle.isUp = true;
+    aiPaddle.isDown = false;
+  } else {
+    aiPaddle.isDown = true;
+    aiPaddle.isUp = false;
+  }
+}
 
-  if (x < 15) {
-    x = 15;
-    vx = -vx;
+function keyPressed() {
+  if (keyCode == UP_ARROW) {
+    playerPaddle.isUp = true;
+  } else if (keyCode == DOWN_ARROW) {
+    playerPaddle.isDown = true;
   }
-  if (y < 15) {
-    y = 15;
-    vy = -vy;
-  }
-  if (x > width - 15) {
-    x = width - 15;
-    vx = -vx;
-  }
-  if (y > height - 15) {
-    y = height - 15;
-    vy = -vy;
+}
+
+function keyReleased() {
+  if (keyCode == UP_ARROW) {
+    playerPaddle.isUp = false;
+  } else if (keyCode == DOWN_ARROW) {
+    playerPaddle.isDown = false;
   }
 }
