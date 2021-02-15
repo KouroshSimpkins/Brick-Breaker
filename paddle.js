@@ -1,38 +1,39 @@
 /*jshint esversion: 6 */
 
 class Paddle {
-    constructor(x){
-      this.x = x;
-      this.y = height / 2;
-      this.height = 80;
-      this.width = 20;
 
-      this.isUp = false;
-      this.isDown = false;
-    }
-  
-    display() {
-      fill(255);
-      rect(this.x, this.y, this.width, this.height);
-    }
+  constructor(y) {
+    this.x = length / 2;
+    this.y = y;
+    this.width = 80;
+    this.height = 20;
 
-    up() {
-      if (this.y > 0) {
-        this.y -= 2;
-      }
-    }
+    this.isLeft = false;
+    this.isRight = false;
+  }
 
-    down() {
-      if (this.y < height - this.height) {
-        this.y += 2;
-      }
-    }
+  display() {
+    fill(255);
+    rect(this.x, this.y, this.width, this.height);
+  }
 
-    update() {
-      if (this.isUp) {
-        this.up();
-      } else if (this.isDown) {
-        this.down();
-      }
+  left() {
+    if (this.x > 0) {
+      this.x -= 2;
     }
   }
+
+  right() {
+    if (this.x < width - this.width){
+      this.x += 2;
+    }
+  }
+
+  update() {
+    if (this.isLeft) {
+      this.left();
+    } else if (this.isRight) {
+      this.right();
+    }
+  }
+}
