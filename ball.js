@@ -31,7 +31,7 @@ class Ball {
   }
 
   display() {
-    ellipse(this.x, this.y, this.r * 2, this.r * 2);
+    circle(this.x, this.y, this.r * 2);
   }
 
   hasHitPlayer(player) {

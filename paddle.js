@@ -19,13 +19,13 @@ class Paddle {
 
   left() {
     if (this.x > 0) {
-      this.x -= 2;
+      this.x -= 3;
     }
   }
 
   right() {
     if (this.x < width - this.width){
-      this.x += 2;
+      this.x += 3;
     }
   }
 
